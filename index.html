@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Jhonatan Rojas | Portafolio de Desarrollador Fullstack</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Fira Code para títulos, Inter para cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========== ESTILOS BASE Y TIPOGRAFÍA ========== */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0A0A;
+    }
+    h1, h2, h3, .font-mono {
+      font-family: 'Fira Code', monospace;
+    }
+    .text-gradient {
+      background: linear-gradient(to bottom, #E0E0E0, #A0A0A0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* ========== ANIMACIONES DE FONDO ========== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(1deg); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+    .animate-float {
+      animation: float 7s ease-in-out infinite;
+    }
+    .animate-pulse-slow {
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    
+    /* Overlays de luz de fondo */
+    .glow-overlay {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    /* Canvas de estrellas */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+    
+    /* ========== EFECTO TYPING ========== */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: #00FF41;
+      font-weight: 400;
+    }
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    /* ========== TARJETAS DE PROYECTOS ========== */
+    .project-card {
+      background-color: #111115;
+      border: 1px solid #1E1E2A;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00FF41, transparent);
+      transition: left 0.6s ease;
+    }
+    .project-card:hover {
+      border-color: #00FF4133;
+      box-shadow: 0 20px 40px -20px rgba(0, 255, 65, 0.15), 0 0 0 1px #00FF4122 inset;
+      transform: translateY(-6px);
+    }
+    .project-card:hover::before {
+      left: 100%;
+    }
+    
+    /* Badge de tecnología */
+    .tech-badge {
+      background-color: #1A1A24;
+      border: 1px solid #2A2A3A;
+      color: #00D4FF;
+      transition: all 0.3s ease;
+    }
+    .project-card:hover .tech-badge {
+      border-color: #00D4FF44;
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+    }
+    
+    /* ========== LÍNEA DE TIEMPO ========== */
+    .timeline-node {
+      background-color: #00FF41;
+      box-shadow: 0 0 15px #00FF4188;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      position: absolute;
+      left: -8px;
+      top: 6px;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 0px;
+      top: 22px;
+      bottom: -22px;
+      width: 2px;
+      background: linear-gradient(to bottom, #00FF41, transparent);
+    }
+  </style>
+</head>
+<body class="text-[#E0E0E0] relative overflow-x-hidden">
+
+  <!-- ========== FONDO DE ESTRELLAS ========== -->
+  <canvas id="starfield"></canvas>
+
+  <!-- ========== OVERLAYS DE LUZ ========== -->
+  <div class="glow-overlay animate-pulse-slow bg-green-500/15 w-[600px] h-[600px] top-[-150px] left-[-150px]"></div>
+  <div class="glow-overlay animate-pulse-slow bg-cyan-500/10 w-[500px] h-[500px] bottom-[5%] right-[-150px]" style="animation-delay: 3s;"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="sticky top-0 z-50 backdrop-blur-lg bg-[#0A0A0A]/80 border-b border-[#1E1E2E]">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-terminal text-2xl text-[#00FF41]"></i>
+        <span class="text-xl font-bold tracking-tight font-mono">&lt;JhonatanRojas /&gt;</span>
+      </div>
+      <div class="hidden md:flex space-x-8 text-sm font-medium font-mono text-[#A0A0B0]">
+        <a href="#home" class="hover:text-[#00FF41] transition-colors">~ home</a>
+        <a href="#proyectos" class="hover:text-[#00FF41] transition-colors">~/proyectos</a>
+        <a href="#habilidades" class="hover:text-[#00FF41] transition-colors">~/skills</a>
+        <a href="#experiencia" class="hover:text-[#00FF41] transition-colors">~/xp</a>
+        <a href="#contacto" class="hover:text-[#00FF41] transition-colors">~/contacto</a>
+      </div>
+      <a href="#contacto" class="px-5 py-2 rounded-lg text-sm font-semibold border border-[#00FF41] text-[#00FF41] hover:bg-[#00FF41] hover:text-[#0A0A0A] transition duration-300 font-mono">
+        ./contratar
+      </a>
+    </div>
+  </nav>
+
+  <!-- ========== SECCIÓN HERO ========== -->
+  <section id="home" class="min-h-screen flex items-center justify-center text-center relative px-4">
+    <div class="max-w-4xl mx-auto space-y-8 animate-float">
+      <span class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest bg-[#0A0A0A] border border-[#00FF41]/40 text-[#00FF41] font-mono">
+        🚀 Disponible para nuevos retos
+      </span>
+      
+      <h1 class="text-4xl md:text-7xl font-extrabold leading-tight tracking-tight text-gradient">
+        &lt;Desarrollador Fullstack /&gt;
+      </h1>
+      
+      <p class="text-lg md:text-xl text-[#B0B0C0] max-w-2xl mx-auto typing-cursor" id="typing-text">
+        Codea, documenta, despliega. El ciclo nunca termina.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+        <button class="px-8 py-4 rounded-xl text-lg font-bold bg-[#00FF41] text-[#0A0A0A] hover:bg-[#00CC33] shadow-2xl shadow-green-500/30 transition duration-300 font-mono">
+          Descargar CV
+        </button>
+        <button class="px-8 py-4 rounded-xl text-lg font-bold border border-[#2A2A3A] text-[#E0E0E0] hover:border-[#00D4FF] hover:bg-[#1A1A24] transition duration-300">
+          Contactar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN PROYECTOS ========== -->
+  <section id="proyectos" class="py-24 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
+          <span class="text-[#00FF41]">~/</span>proyectos
+        </h2>
+        <p class="text-[#9090A0] font-mono text-sm"># Casos reales de mi etapa productiva en Indumil</p>
+      </div>
+
+      <!-- Cuadrícula de proyectos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Proyecto 1 -->
+        <div class="project-card p-6 rounded-2xl flex flex-col">
+          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Arquitecto de Sistemas E-commerce</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Análisis</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Lucidchart</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Diagramas</span>
+          </div>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
+            Lideré la fase de análisis y diseño del nuevo sistema de ventas, creando los diagramas de flujo y la arquitectura base para el chatbot y el proceso de compra.
+          </p>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="project-card p-6 rounded-2xl flex flex-col">
+          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Desarrollador de Catálogo Dinámico</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Python</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">MySQL</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">WordPress</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Git</span>
+          </div>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
+            Tomé el control del catálogo de productos de la app, alimentando la base de datos MySQL. Administré la web de inventarios en WordPress, depurando más de 700 URLs.
+          </p>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="project-card p-6 rounded-2xl flex flex-col">
+          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
+            <i class="fa-solid fa-file-signature"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Fullstack: Formulario Inteligente Py</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Python</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Flask</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">JavaScript</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">PEP-8</span>
+          </div>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
+            Desarrollé un sistema completo de formulario con captura de firmas y fotografías digitales, generando un PDF final. Código estandarizado con Black & Flake8.
+          </p>
+        </div>
+
+        <!-- Proyecto 4 -->
+        <div class="project-card p-6 rounded-2xl flex flex-col">
+          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">DevOps & Panel de Video CMS</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Git</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">.Vue</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Node.js</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Res. Conflictos</span>
+          </div>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
+            Enfrenté conflictos de fusión en Git para desplegar mi código. Luego desarrollé un panel de control en el Backoffice para gestión de videos de los administradores.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN HABILIDADES ========== -->
+  <section id="habilidades" class="py-24 px-6 bg-[#0A0A0A]/80 border-t border-[#1E1E2E]">
+    <div class="max-w-6xl mx-auto text-center mb-16 space-y-4">
+      <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
+        <span class="text-[#00FF41]">~/</span>stack actual
+      </h2>
+      <p class="text-[#9090A0] font-mono text-sm"># Herramientas que uso en el día a día</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
+      <!-- Iconos de habilidades -->
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-brands fa-python text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Python</span>
+      </div>
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-brands fa-angular text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Angular</span>
+      </div>
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-brands fa-vuejs text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Vue.js</span>
+      </div>
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-brands fa-js text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">JavaScript</span>
+      </div>
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-solid fa-database text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">MySQL</span>
+      </div>
+      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
+        <i class="fa-brands fa-git-alt text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
+        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN EXPERIENCIA (TIMELINE) ========== -->
+  <section id="experiencia" class="py-24 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
+          <span class="text-[#00FF41]">~/</span>experiencia
+        </h2>
+      </div>
+      <div class="relative pl-8 border-l-2 border-[#1E1E2E] ml-4 md:ml-0">
+        <!-- Item Timeline -->
+        <div class="relative mb-12">
+          <div class="timeline-node"></div>
+          <div class="timeline-line"></div>
+          <span class="text-[#00FF41] font-mono text-sm font-bold tracking-widest uppercase">2025 - 2026</span>
+          <h3 class="text-xl font-bold font-mono text-[#E0E0E0] mt-1">Desarrollador Fullstack · Indumil</h3>
+          <p class="text-[#9090A0] text-sm mt-2 max-w-xl">
+            Etapa productiva. Responsable del diseño de arquitectura, desarrollo de catálogo dinámico, automatización con Python y resolución de conflictos de despliegue con Git.
+          </p>
+        </div>
+        <!-- Items adicionales de CV -->
+        <div class="relative mb-12">
+          <div class="timeline-node"></div>
+          <span class="text-[#9090A0] font-mono text-sm font-bold tracking-widest uppercase">2023</span>
+          <h3 class="text-lg font-bold font-mono text-[#E0E0E0] mt-1">Auxiliar de Soporte Técnico · I.E. Paz y Esperanza</h3>
+        </div>
+        <div class="relative">
+          <div class="timeline-node"></div>
+          <span class="text-[#9090A0] font-mono text-sm font-bold tracking-widest uppercase">2021 - 2022</span>
+          <h3 class="text-lg font-bold font-mono text-[#E0E0E0] mt-1">Help Desk · Construarkidek</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER / CONTACTO ========== -->
+  <footer id="contacto" class="border-t border-[#1E1E2E] py-16 text-center">
+    <div class="max-w-4xl mx-auto px-6 space-y-6">
+      <h2 class="text-2xl font-bold font-mono text-[#E0E0E0]">
+        <span class="text-[#00FF41]">~/</span>conectemos
+      </h2>
+      <div class="flex justify-center space-x-6 text-2xl">
+        <a href="mailto:rojasjhonatan88@gmail.com" class="hover:text-[#00FF41] transition-colors"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" class="hover:text-[#00FF41] transition-colors"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="hover:text-[#00FF41] transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <p class="text-[#606070] text-sm font-mono">
+        © 2026 Jhonatan David Rojas Meneses. Construido con código abierto y café.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // ---------- CAMPO DE ESTRELLAS ----------
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    const stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.5 + 0.3,
+      speedX: (Math.random() - 0.5) * 0.15,
+      speedY: (Math.random() - 0.5) * 0.15
+    }));
+    
+    function drawStars() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#E0E0E0';
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+        star.x += star.speedX;
+        star.y += star.speedY;
+        if (star.x < 0) star.x = width;
+        if (star.x > width) star.x = 0;
+        if (star.y < 0) star.y = height;
+        if (star.y > height) star.y = 0;
+      });
+      requestAnimationFrame(drawStars);
+    }
+    
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    drawStars();
+    
+    // ---------- EFECTO DE MÁQUINA DE ESCRIBIR ----------
+    const textElement = document.getElementById('typing-text');
+    if (textElement) {
+      const fullText = "Codea, documenta, despliega. El ciclo nunca termina.";
+      let index = 0;
+      
+      function typeWriter() {
+        if (index < fullText.length) {
+          textElement.textContent = fullText.substring(0, index + 1);
+          index++;
+          setTimeout(typeWriter, 60);
+        }
+      }
+      
+      // Inicia el efecto después de un pequeño delay
+      setTimeout(typeWriter, 500);
+    }
+  </script>
+
+</body>
+</html>
