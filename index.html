@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Jhonatan Rojas | Portafolio de Desarrollador Fullstack</title>
+  <title>Jhonatan Rojas | Creador de páginas web profesionales y sistemas a medida</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -38,11 +38,33 @@
       0%, 100% { transform: scale(1); opacity: 0.3; }
       50% { transform: scale(1.1); opacity: 0.5; }
     }
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
     .animate-float {
       animation: float 7s ease-in-out infinite;
     }
     .animate-pulse-slow {
       animation: pulse-glow 6s ease-in-out infinite;
+    }
+    .animate-slideInUp {
+      animation: slideInUp 0.8s ease-out;
+    }
+    .animate-bounce-slow {
+      animation: bounce-slow 3s ease-in-out infinite;
     }
     
     /* Overlays de luz de fondo */
@@ -98,7 +120,7 @@
     .project-card:hover {
       border-color: #00FF4133;
       box-shadow: 0 20px 40px -20px rgba(0, 255, 65, 0.15), 0 0 0 1px #00FF4122 inset;
-      transform: translateY(-6px);
+      transform: translateY(-8px) scale(1.02);
     }
     .project-card:hover::before {
       left: 100%;
@@ -135,6 +157,209 @@
       width: 2px;
       background: linear-gradient(to bottom, #00FF41, transparent);
     }
+    
+    /* Estilo para enlaces de proyectos */
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      margin-top: 12px;
+      color: #00D4FF;
+      text-decoration: none;
+      font-family: 'Fira Code', monospace;
+      transition: all 0.2s;
+    }
+    .project-link:hover {
+      color: #00FF41;
+      gap: 10px;
+    }
+    
+    /* Estilos para la sección de formulario inteligente */
+    .smart-form-card {
+      background: linear-gradient(135deg, #111115 0%, #0D0D12 100%);
+      border: 1px solid #2A2A3A;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .smart-form-card:hover {
+      border-color: #00FF4166;
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+    }
+    
+    .highlight-text {
+      background: linear-gradient(120deg, #00FF41 0%, #00D4FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(90deg, #00FF41 0%, #00CC33 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 255, 65, 0.3);
+    }
+    
+    /* ========== NUEVOS ESTILOS MEJORADOS ========== */
+    .card-benefit {
+      background: linear-gradient(135deg, #1A1A24 0%, #111115 100%);
+      border: 1px solid #2A2A3A;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-benefit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #00FF41/10 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card-benefit:hover {
+      border-color: #00FF41/50;
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 255, 65, 0.1);
+    }
+    .card-benefit:hover::before {
+      opacity: 1;
+    }
+    .card-benefit > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Cards interactivos de servicios */
+    .service-card {
+      background: #111115;
+      border: 2px solid #1E1E2E;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, #00FF41/20, transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      border-color: #00FF41;
+      transform: translateY(-12px) rotateX(5deg);
+      box-shadow: 0 25px 50px rgba(0, 255, 65, 0.15), inset 0 1px 0 rgba(0, 255, 65, 0.1);
+    }
+    .service-card:hover::after {
+      opacity: 1;
+    }
+    
+    /* ========== SLIDER DE TESTIMONIOS ========== */
+    .testimonial-card {
+      background: linear-gradient(135deg, #1A1A24, #111115);
+      border: 1px solid #2A2A3A;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    /* Button mejorado */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn-glow:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* ========== COMPARATIVO DE PLANES ========== */
+    .pricing-card {
+      background: #111115;
+      border: 1px solid #2A2A3A;
+      transition: all 0.3s ease;
+    }
+    .pricing-card.featured {
+      border: 2px solid #00FF41;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+    }
+    .pricing-card:hover {
+      border-color: #00FF41/60;
+      transform: translateY(-5px);
+    }
+    
+    /* Efecto de número que cuenta */
+    .counter {
+      font-weight: bold;
+      color: #00FF41;
+    }
+
+    /* Cards con iconos animados */
+    .icon-card {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .icon-card:hover i {
+      transform: scale(1.2) rotate(10deg);
+      color: #00FF41;
+    }
+    .icon-card i {
+      transition: all 0.3s ease;
+    }
+
+    /* Efecto de código en vivo */
+    .code-showcase {
+      background: #0D0D12;
+      border: 1px solid #2A2A3A;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      transition: all 0.3s ease;
+    }
+    .code-showcase:hover {
+      border-color: #00FF41/50;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+    }
+
+    /* Modal/Dialog mejorado */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Indicador de scroll */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce-slow 2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="text-[#E0E0E0] relative overflow-x-hidden">
@@ -146,254 +371,1051 @@
   <div class="glow-overlay animate-pulse-slow bg-green-500/15 w-[600px] h-[600px] top-[-150px] left-[-150px]"></div>
   <div class="glow-overlay animate-pulse-slow bg-cyan-500/10 w-[500px] h-[500px] bottom-[5%] right-[-150px]" style="animation-delay: 3s;"></div>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="sticky top-0 z-50 backdrop-blur-lg bg-[#0A0A0A]/80 border-b border-[#1E1E2E]">
+  <!-- ========== NAVBAR MEJORADO ========== -->
+  <nav class="sticky top-0 z-50 backdrop-blur-xl bg-[#0A0A0A]/90 border-b border-[#1E1E2E]">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-terminal text-2xl text-[#00FF41]"></i>
-        <span class="text-xl font-bold tracking-tight font-mono">&lt;JhonatanRojas /&gt;</span>
+      <div class="flex items-center space-x-2 group cursor-pointer">
+        <div class="relative">
+          <i class="fa-solid fa-terminal text-2xl text-[#00FF41] group-hover:scale-110 transition-transform"></i>
+          <div class="absolute inset-0 bg-[#00FF41]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <span class="text-xl font-bold tracking-tight font-mono bg-gradient-to-r from-[#E0E0E0] to-[#00FF41] bg-clip-text text-transparent">&lt;JhonatanRojas /&gt;</span>
       </div>
       <div class="hidden md:flex space-x-8 text-sm font-medium font-mono text-[#A0A0B0]">
-        <a href="#home" class="hover:text-[#00FF41] transition-colors">~ home</a>
-        <a href="#proyectos" class="hover:text-[#00FF41] transition-colors">~/proyectos</a>
-        <a href="#habilidades" class="hover:text-[#00FF41] transition-colors">~/skills</a>
-        <a href="#experiencia" class="hover:text-[#00FF41] transition-colors">~/xp</a>
-        <a href="#contacto" class="hover:text-[#00FF41] transition-colors">~/contacto</a>
+        <a href="#home" class="relative hover:text-[#00FF41] transition-colors group">
+          ~ inicio
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00FF41] transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#por-que" class="relative hover:text-[#00FF41] transition-colors group">
+          ~/porque-contratar
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00FF41] transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#proyectos" class="relative hover:text-[#00FF41] transition-colors group">
+          ~/portafolio
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00FF41] transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#servicios" class="relative hover:text-[#00FF41] transition-colors group">
+          ~/servicios
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00FF41] transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#contacto" class="relative hover:text-[#00FF41] transition-colors group">
+          ~/contacto
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00FF41] transition-all group-hover:w-full"></span>
+        </a>
       </div>
-      <a href="#contacto" class="px-5 py-2 rounded-lg text-sm font-semibold border border-[#00FF41] text-[#00FF41] hover:bg-[#00FF41] hover:text-[#0A0A0A] transition duration-300 font-mono">
+      <a href="#contacto" class="px-5 py-2 rounded-lg text-sm font-semibold border border-[#00FF41] text-[#00FF41] hover:bg-[#00FF41] hover:text-[#0A0A0A] transition duration-300 font-mono btn-glow">
         ./contratar
       </a>
     </div>
   </nav>
 
-  <!-- ========== SECCIÓN HERO ========== -->
-  <section id="home" class="min-h-screen flex items-center justify-center text-center relative px-4">
-    <div class="max-w-4xl mx-auto space-y-8 animate-float">
-      <span class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest bg-[#0A0A0A] border border-[#00FF41]/40 text-[#00FF41] font-mono">
-        🚀 Disponible para nuevos retos
-      </span>
+  <!-- ========== SECCIÓN HERO MEJORADA ========== -->
+  <section id="home" class="min-h-screen flex items-center justify-center text-center relative px-4 py-20">
+    <div class="max-w-5xl mx-auto space-y-8 animate-float">
+      <!-- Badge atractivo -->
+      <div class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest bg-gradient-to-r from-[#00FF41]/20 to-[#00D4FF]/20 border border-[#00FF41]/40 text-[#00FF41] font-mono hover:border-[#00FF41]/60 transition-all cursor-pointer">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF41] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00FF41]"></span>
+        </span>
+        🚀 TRANSFORMA TU NEGOCIO EN PRESENCIA DIGITAL
+      </div>
       
-      <h1 class="text-4xl md:text-7xl font-extrabold leading-tight tracking-tight text-gradient">
-        &lt;Desarrollador Fullstack /&gt;
-      </h1>
+      <!-- Título principal con gradiente dinámico -->
+      <div class="space-y-4">
+        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight tracking-tight">
+          <span class="text-gradient">Tu página web profesional</span><br>
+          <span class="bg-gradient-to-r from-[#00FF41] via-[#00D4FF] to-[#00FF41] bg-clip-text text-transparent animate-pulse">espera aquí</span>
+        </h1>
+      </div>
       
-      <p class="text-lg md:text-xl text-[#B0B0C0] max-w-2xl mx-auto typing-cursor" id="typing-text">
-        Codea, documenta, despliega. El ciclo nunca termina.
+      <!-- Subtítulo descriptivo -->
+      <p class="text-lg md:text-xl text-[#B0B0C0] max-w-3xl mx-auto typing-cursor leading-relaxed" id="typing-text">
+        ✨ Diseño sitios web que <span class="text-[#00FF41] font-bold">generan clientes</span> • Sistemas de login seguros • Formularios inteligentes con firma digital
       </p>
       
-      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-        <button class="px-8 py-4 rounded-xl text-lg font-bold bg-[#00FF41] text-[#0A0A0A] hover:bg-[#00CC33] shadow-2xl shadow-green-500/30 transition duration-300 font-mono">
-          Descargar CV
-        </button>
-        <button class="px-8 py-4 rounded-xl text-lg font-bold border border-[#2A2A3A] text-[#E0E0E0] hover:border-[#00D4FF] hover:bg-[#1A1A24] transition duration-300">
-          Contactar
-        </button>
+      <!-- Beneficios rápidos -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto my-8">
+        <div class="flex items-center justify-center gap-2 text-sm text-[#B0B0C0]">
+          <i class="fa-solid fa-circle-check text-[#00FF41]"></i>
+          <span>100% Responsive</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-sm text-[#B0B0C0]">
+          <i class="fa-solid fa-circle-check text-[#00FF41]"></i>
+          <span>SEO Optimizado</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-sm text-[#B0B0C0]">
+          <i class="fa-solid fa-circle-check text-[#00FF41]"></i>
+          <span>Soporte continuo</span>
+        </div>
+      </div>
+      
+      <!-- CTA Mejorados -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
+        <a href="#contacto" class="px-8 py-4 rounded-xl text-lg font-bold bg-gradient-to-r from-[#00FF41] to-[#00CC33] text-[#0A0A0A] hover:from-[#00CC33] hover:to-[#00AA22] shadow-2xl shadow-green-500/30 transition-all duration-300 font-mono inline-block transform hover:scale-105 btn-glow flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp"></i> Contáctame Ahora
+        </a>
+        <a href="#por-que" class="px-8 py-4 rounded-xl text-lg font-bold border-2 border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF]/10 hover:shadow-lg shadow-blue-500/20 transition duration-300 inline-flex items-center gap-2 justify-center">
+          <i class="fa-solid fa-arrow-down"></i> Ver beneficios
+        </a>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="scroll-indicator text-[#00FF41] text-xl opacity-75">
+        <i class="fa-solid fa-chevron-down"></i>
       </div>
     </div>
   </section>
 
-  <!-- ========== SECCIÓN PROYECTOS ========== -->
-  <section id="proyectos" class="py-24 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+  <!-- ========== NUEVA SECCIÓN: ¿POR QUÉ CONTRATAR? ========== -->
+  <section id="por-que" class="py-32 px-6 bg-gradient-to-b from-[#0A0A0A]/40 to-[#0A0A0A]/80 border-t border-[#1E1E2E]">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 space-y-4">
-        <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
-          <span class="text-[#00FF41]">~/</span>proyectos
+      <div class="text-center mb-20 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00FF41]/10 px-4 py-2 rounded-full border border-[#00FF41]/30">
+          <i class="fa-regular fa-lightbulb text-[#00FF41]"></i>
+          <span class="text-xs font-mono text-[#00FF41] font-semibold">¿POR QUÉ NECESITAS UNA WEB?</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          El crecimiento de tu negocio comienza aquí
         </h2>
-        <p class="text-[#9090A0] font-mono text-sm"># Casos reales de mi etapa productiva en Indumil</p>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          Una página web no es un lujo, es tu mejor herramienta para crecer. Aquí te mostramos cómo.
+        </p>
+      </div>
+
+      <!-- Grid de beneficios -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Beneficio 1 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📱</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Clientes te encuentran 24/7</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Mientras duermes, tu web está trabajando. Los clientes potenciales te encuentran en Google y conocen tu negocio en cualquier momento.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ +40% de clientes nuevos</div>
+        </div>
+
+        <!-- Beneficio 2 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎯</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Proyecta profesionalismo</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Negocios sin web parecen desactualizados. Una página profesional te posiciona como experto en tu ramo y genera confianza inmediata.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ Credibilidad asegurada</div>
+        </div>
+
+        <!-- Beneficio 3 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💰</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Vende mientras trabajas</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Con formularios inteligentes, cotizaciones automáticas y contacto directo, tu web genera leads calificados sin esfuerzo manual.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ Automatiza ventas</div>
+        </div>
+
+        <!-- Beneficio 4 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Mide tu éxito</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Sabe exactamente cuántas personas te visitan, de dónde vienen y qué hacen. Datos reales para tomar mejores decisiones.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ Decisiones basadas en datos</div>
+        </div>
+
+        <!-- Beneficio 5 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🌐</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Compite con grandes</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Con una web bien optimizada, pequeños negocios pueden competir con empresas grandes. El alcance es infinito en internet.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ Sin limitaciones geográficas</div>
+        </div>
+
+        <!-- Beneficio 6 -->
+        <div class="card-benefit p-8 rounded-2xl group">
+          <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+          <h3 class="text-xl font-bold mb-3 font-mono">Crece sin límites</h3>
+          <p class="text-[#9090A0] leading-relaxed">
+            Tu web crece con tu negocio. Hoy una landing page, mañana un sistema completo. Escalable y flexible según necesites.
+          </p>
+          <div class="mt-4 text-sm text-[#00FF41] font-mono">→ Inversión a largo plazo</div>
+        </div>
+      </div>
+
+      <!-- Sección de comparativa simple pero efectiva -->
+      <div class="mt-20 bg-[#111115] border border-[#2A2A3A] rounded-2xl p-8 md:p-12">
+        <h3 class="text-2xl font-bold font-mono mb-8 text-center">Tu negocio sin web vs. Con web profesional</h3>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Sin web -->
+          <div>
+            <h4 class="font-bold text-[#FF6B6B] mb-6 flex items-center gap-2">
+              <i class="fa-solid fa-times"></i> Sin presencia digital
+            </h4>
+            <ul class="space-y-3 text-[#9090A0] text-sm">
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> Los clientes no te encuentran en Google</li>
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> Pareces desactualizados vs. competencia</li>
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> Pierdes clientes que buscan online</li>
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> Todo es contacto manual (teléfono/WhatsApp)</li>
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> No tienes portafolio visible</li>
+              <li class="flex gap-3"><span class="text-[#FF6B6B]">✗</span> Crecimiento limitado geográficamente</li>
+            </ul>
+          </div>
+          <!-- Con web -->
+          <div>
+            <h4 class="font-bold text-[#00FF41] mb-6 flex items-center gap-2">
+              <i class="fa-solid fa-check"></i> Con web profesional (¡MI TRABAJO!)
+            </h4>
+            <ul class="space-y-3 text-[#B0B0C0] text-sm">
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> SEO optimizado: Clientes te encuentran fácil</li>
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> Imagen profesional y moderna</li>
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> Captas clientes online 24/7</li>
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> Formularios inteligentes automatizan procesos</li>
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> Galería y portafolio impactante</li>
+              <li class="flex gap-3"><span class="text-[#00FF41]">✓</span> Alcance nacional e internacional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN SERVICIOS CLAVE MEJORADA ========== -->
+  <section id="servicios" class="py-32 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00D4FF]/10 px-4 py-2 rounded-full border border-[#00D4FF]/30">
+          <i class="fa-regular fa-wand-magic-sparkles text-[#00D4FF]"></i>
+          <span class="text-xs font-mono text-[#00D4FF] font-semibold">MIS SERVICIOS PRINCIPALES</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Soluciones que transforman tu negocio
+        </h2>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          Desde landing pages hasta sistemas completos, tengo la solución perfecta para ti
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Servicio 1: Páginas Web Profesionales -->
+        <div class="service-card p-8 rounded-2xl flex flex-col group">
+          <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-xl bg-gradient-to-br from-[#00FF41]/20 to-[#00D4FF]/20 border border-[#00FF41]/30 group-hover:border-[#00FF41] group-hover:bg-[#00FF41]/10 transition-all">
+            <i class="fa-solid fa-globe text-3xl text-[#00FF41] group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-mono mb-3 group-hover:text-[#00FF41] transition-colors">Páginas Web Profesionales</h3>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow mb-4">
+            Diseños modernos, responsivos y enfocados en convertir visitantes en clientes. Cada web es única y adaptada a tu marca.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Landing pages atractivas</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Catálogos y portafolios</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Sitios corporativos</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>SEO optimizado</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-[#2A2A3A]">
+            <p class="text-xs text-[#606070]">🎯 Ideal para: Emprendedores, pequeños negocios, profesionales</p>
+          </div>
+        </div>
+
+        <!-- Servicio 2: Sistemas de Login -->
+        <div class="service-card p-8 rounded-2xl flex flex-col group">
+          <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-xl bg-gradient-to-br from-[#00D4FF]/20 to-[#00FF41]/20 border border-[#00D4FF]/30 group-hover:border-[#00D4FF] group-hover:bg-[#00D4FF]/10 transition-all">
+            <i class="fa-solid fa-user-lock text-3xl text-[#00D4FF] group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-mono mb-3 group-hover:text-[#00D4FF] transition-colors">Sistemas de Login y Roles</h3>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow mb-4">
+            Autenticación segura, gestión de usuarios y paneles administrativos personalizados. Protege tus datos con tecnología moderna.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Autenticación segura (JWT)</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Gestión de perfiles y roles</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Panel administrativo</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Recuperación de contraseña</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-[#2A2A3A]">
+            <p class="text-xs text-[#606070]">🎯 Ideal para: Plataformas, apps web, bases de datos privadas</p>
+          </div>
+        </div>
+
+        <!-- Servicio 3: Formularios Inteligentes -->
+        <div class="service-card p-8 rounded-2xl flex flex-col group">
+          <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B6B]/20 to-[#00FF41]/20 border border-[#FF6B6B]/30 group-hover:border-[#FF6B6B] group-hover:bg-[#FF6B6B]/10 transition-all">
+            <i class="fa-solid fa-file-pdf text-3xl text-[#FF6B6B] group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-mono mb-3 group-hover:text-[#FF6B6B] transition-colors">Formularios Inteligentes</h3>
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow mb-4">
+            Captura de datos, firmas digitales, validaciones automáticas y generación de PDFs. Automatiza procesos empresariales.
+          </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Validación en tiempo real</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Captura de firma digital</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Generación automática de PDF</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#00D4FF]">
+              <i class="fa-solid fa-check text-[#00FF41]"></i>
+              <span>Integración con bases de datos</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-[#2A2A3A]">
+            <p class="text-xs text-[#606070]">🎯 Ideal para: Cotizaciones, solicitudes, registros, contratos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN PROYECTOS (Portafolio real) MEJORADA ========== -->
+  <section id="proyectos" class="py-32 px-6 bg-[#0A0A0A]/80 border-t border-[#1E1E2E]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00FF41]/10 px-4 py-2 rounded-full border border-[#00FF41]/30">
+          <i class="fa-regular fa-star text-[#00FF41]"></i>
+          <span class="text-xs font-mono text-[#00FF41] font-semibold">PROYECTOS REALES QUE FUNCIONAN</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Portafolio <span class="highlight-text">probado y exitoso</span>
+        </h2>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          Clientes reales, resultados reales. Aquí están los proyectos que han transformado negocios
+        </p>
       </div>
 
       <!-- Cuadrícula de proyectos -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         
-        <!-- Proyecto 1 -->
-        <div class="project-card p-6 rounded-2xl flex flex-col">
-          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
-            <i class="fa-solid fa-diagram-project"></i>
+        <!-- Proyecto 1: Tecnozunchadoras -->
+        <div class="project-card p-8 rounded-2xl flex flex-col h-full hover:shadow-2xl">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-16 h-16 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-3xl">
+              <i class="fa-solid fa-industry"></i>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-[#00FF41]/10 text-[#00FF41] border border-[#00FF41]/30">
+              ✓ En vivo
+            </span>
           </div>
-          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Arquitecto de Sistemas E-commerce</h3>
+          <h3 class="text-2xl font-bold mb-2 font-mono text-[#E0E0E0]">Tecnozunchadoras</h3>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Análisis</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Lucidchart</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Diagramas</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Landing page</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Catálogo interactivo</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Formulario cotización</span>
           </div>
-          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
-            Lideré la fase de análisis y diseño del nuevo sistema de ventas, creando los diagramas de flujo y la arquitectura base para el chatbot y el proceso de compra.
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow mb-6">
+            Plataforma profesional para maquinaria industrial. Diseño moderno, showcase de productos, sistema de cotización inteligente y formulario de contacto avanzado. 
           </p>
+          <div class="bg-[#1A1A24] p-4 rounded-lg mb-6 text-sm">
+            <p class="text-[#B0B0C0]"><span class="text-[#00FF41] font-bold">Resultado:</span> Aumento en consultas de clientes, mejor posicionamiento en Google.</p>
+          </div>
+          <a href="https://tecnozunchadoras.com/" target="_blank" class="project-link font-mono hover:gap-3" rel="noopener noreferrer">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visita el proyecto en vivo
+          </a>
         </div>
 
-        <!-- Proyecto 2 -->
-        <div class="project-card p-6 rounded-2xl flex flex-col">
-          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
-            <i class="fa-solid fa-database"></i>
+        <!-- Proyecto 2: La Rellena la Sabrosita -->
+        <div class="project-card p-8 rounded-2xl flex flex-col h-full hover:shadow-2xl">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-16 h-16 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-3xl">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-[#00FF41]/10 text-[#00FF41] border border-[#00FF41]/30">
+              ✓ En vivo
+            </span>
           </div>
-          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Desarrollador de Catálogo Dinámico</h3>
+          <h3 class="text-2xl font-bold mb-2 font-mono text-[#E0E0E0]">La Rellena la Sabrosita</h3>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Python</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">MySQL</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">WordPress</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Git</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Web corporativa</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Galería HD</span>
+            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Redes integradas</span>
           </div>
-          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
-            Tomé el control del catálogo de productos de la app, alimentando la base de datos MySQL. Administré la web de inventarios en WordPress, depurando más de 700 URLs.
+          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow mb-6">
+            Sitio web moderno para emprendimiento de alimentos. Diseño elegante, galería de productos apetitosa, integración con redes sociales y contacto directo.
           </p>
+          <div class="bg-[#1A1A24] p-4 rounded-lg mb-6 text-sm">
+            <p class="text-[#B0B0C0]"><span class="text-[#00FF41] font-bold">Resultado:</span> Más seguidores en redes, incremento en pedidos online.</p>
+          </div>
+          <a href="http://larellenalasabrosita.infinityfreeapp.com/" target="_blank" class="project-link font-mono hover:gap-3" rel="noopener noreferrer">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Explorar sitio web
+          </a>
         </div>
+      </div>
 
-        <!-- Proyecto 3 -->
-        <div class="project-card p-6 rounded-2xl flex flex-col">
-          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
-            <i class="fa-solid fa-file-signature"></i>
+      <!-- Proyecto destacado: Sistema de Login -->
+      <div class="bg-gradient-to-r from-[#1A1A24] to-[#0D0D12] border-2 border-[#00FF41]/30 rounded-2xl p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <i class="fa-solid fa-code text-2xl text-[#00FF41]"></i>
+              <span class="text-xs font-mono text-[#00FF41] font-bold">PROYECTO DESTACADO</span>
+            </div>
+            <h3 class="text-3xl font-bold mb-4 font-mono text-[#E0E0E0]">
+              Sistema de Login <span class="text-[#00D4FF]">+ Panel Administrativo</span>
+            </h3>
+            <p class="text-[#B0B0C0] leading-relaxed mb-6">
+              Plataforma completa de autenticación con panel administrativo avanzado. Gestión de usuarios, roles, permisos y generación automática de reportes en PDF.
+            </p>
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-shield-halved text-[#00FF41] mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-[#E0E0E0]">Autenticación Segura</h4>
+                  <p class="text-sm text-[#9090A0]">JWT, hashing de contraseñas, validaciones avanzadas</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-users-gear text-[#00FF41] mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-[#E0E0E0]">Gestión de Usuarios</h4>
+                  <p class="text-sm text-[#9090A0]">Roles, permisos, administración completa</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-file-pdf text-[#FF6B6B] mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-[#E0E0E0]">Reportes Automáticos</h4>
+                  <p class="text-sm text-[#9090A0]">Generación de PDFs dinámicos, datos en tiempo real</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <a href="#contacto" class="px-6 py-3 bg-[#00FF41] text-[#0A0A0A] font-bold rounded-lg hover:bg-[#00CC33] transition font-mono inline-block">
+                Solicitar presupuesto
+              </a>
+              <a href="#" class="px-6 py-3 border border-[#00D4FF] text-[#00D4FF] font-bold rounded-lg hover:bg-[#00D4FF]/10 transition font-mono inline-block">
+                Ver documentación
+              </a>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">Fullstack: Formulario Inteligente Py</h3>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Python</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Flask</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">JavaScript</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">PEP-8</span>
+          <div class="bg-[#0D0D12] rounded-xl border border-[#2A2A3A] p-6 code-showcase">
+            <div class="mb-4">
+              <div class="flex gap-2 mb-2">
+                <span class="text-[#00FF41]">▸</span>
+                <span class="text-[#E0E0E0]">login_system/</span>
+              </div>
+              <div class="ml-4 space-y-1 text-xs">
+                <div><span class="text-[#00D4FF]">├── </span><span class="text-[#B0B0C0]">app.py</span> <span class="text-[#606070]"># Backend Flask</span></div>
+                <div><span class="text-[#00D4FF]">├── </span><span class="text-[#B0B0C0]">auth.js</span> <span class="text-[#606070]"># Validación frontend</span></div>
+                <div><span class="text-[#00D4FF]">├── </span><span class="text-[#B0B0C0]">database.sql</span> <span class="text-[#606070]"># Estructura BD</span></div>
+                <div><span class="text-[#00D4FF]">└── </span><span class="text-[#B0B0C0]">dashboard.html</span> <span class="text-[#606070]"># Panel admin</span></div>
+              </div>
+            </div>
+            <div class="border-t border-[#2A2A3A] pt-4 mt-4">
+              <p class="text-[#606070] text-xs">✨ Tecnologías: Python • Flask • MySQL • JWT • JavaScript</p>
+            </div>
           </div>
-          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
-            Desarrollé un sistema completo de formulario con captura de firmas y fotografías digitales, generando un PDF final. Código estandarizado con Black & Flake8.
-          </p>
-        </div>
-
-        <!-- Proyecto 4 -->
-        <div class="project-card p-6 rounded-2xl flex flex-col">
-          <div class="w-14 h-14 mb-5 flex items-center justify-center rounded-xl bg-[#1A1A24] text-[#00FF41] text-2xl">
-            <i class="fa-solid fa-code-branch"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3 font-mono text-[#E0E0E0]">DevOps & Panel de Video CMS</h3>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Git</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">.Vue</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Node.js</span>
-            <span class="tech-badge px-3 py-1 rounded-full text-xs font-mono">Res. Conflictos</span>
-          </div>
-          <p class="text-[#9090A0] text-sm leading-relaxed flex-grow">
-            Enfrenté conflictos de fusión en Git para desplegar mi código. Luego desarrollé un panel de control en el Backoffice para gestión de videos de los administradores.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SECCIÓN HABILIDADES ========== -->
-  <section id="habilidades" class="py-24 px-6 bg-[#0A0A0A]/80 border-t border-[#1E1E2E]">
-    <div class="max-w-6xl mx-auto text-center mb-16 space-y-4">
-      <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
-        <span class="text-[#00FF41]">~/</span>stack actual
-      </h2>
-      <p class="text-[#9090A0] font-mono text-sm"># Herramientas que uso en el día a día</p>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
-      <!-- Iconos de habilidades -->
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-brands fa-python text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Python</span>
-      </div>
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-brands fa-angular text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Angular</span>
-      </div>
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-brands fa-vuejs text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Vue.js</span>
-      </div>
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-brands fa-js text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">JavaScript</span>
-      </div>
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-solid fa-database text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">MySQL</span>
-      </div>
-      <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-colors group">
-        <i class="fa-brands fa-git-alt text-3xl text-[#00D4FF] mb-2 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0]">Git</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SECCIÓN EXPERIENCIA (TIMELINE) ========== -->
-  <section id="experiencia" class="py-24 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
-    <div class="max-w-4xl mx-auto">
+  <!-- ========== SECCIÓN FORMULARIO INTELIGENTE - RENOVADA ========== -->
+  <section class="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#0D0D12] to-[#0A0A0A]">
+    <div class="max-w-5xl mx-auto">
       <div class="text-center mb-16 space-y-4">
-        <h2 class="text-3xl md:text-4xl font-bold font-mono text-[#E0E0E0]">
-          <span class="text-[#00FF41]">~/</span>experiencia
+        <div class="inline-flex items-center gap-2 bg-[#FF6B6B]/10 px-4 py-2 rounded-full border border-[#FF6B6B]/30">
+          <i class="fa-solid fa-sparkles text-[#FF6B6B]"></i>
+          <span class="text-xs font-mono text-[#FF6B6B] font-semibold">✦ SOLUCIÓN PREMIUM ✦</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Formulario <span class="highlight-text">Inteligente + Firma Digital</span>
+        </h2>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          La herramienta que tu empresa necesita para automatizar procesos, reducir papeleo y ofrecer una experiencia profesional a tus clientes.
+        </p>
+      </div>
+
+      <div class="smart-form-card rounded-3xl p-1 bg-gradient-to-r from-[#FF6B6B]/20 via-transparent to-[#00D4FF]/20">
+        <div class="bg-[#111115] rounded-3xl p-8 md:p-12">
+          <!-- Grid de características destacadas -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#00FF41]/20 group-hover:bg-[#00FF41]/30 transition">
+                <i class="fa-regular fa-circle-check text-[#00FF41] text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold font-mono text-[#E0E0E0] mb-1">Validación Inteligente</h3>
+                <p class="text-xs text-[#9090A0]">Campos que guían al usuario, previenen errores, autocompletan datos</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#00D4FF]/20 group-hover:bg-[#00D4FF]/30 transition">
+                <i class="fa-regular fa-pen-to-square text-[#00D4FF] text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold font-mono text-[#E0E0E0] mb-1">Firma Digital Manuscrita</h3>
+                <p class="text-xs text-[#9090A0]">Canvas interactivo para capturar firma con validación automática</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[#FF6B6B]/20 group-hover:bg-[#FF6B6B]/30 transition">
+                <i class="fa-regular fa-file-pdf text-[#FF6B6B] text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold font-mono text-[#E0E0E0] mb-1">PDF Profesional</h3>
+                <p class="text-xs text-[#9090A0]">Generación automática de documentos listos para descargar o enviar</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mockup visual del formulario mejorado -->
+          <div class="bg-[#0D0D12] rounded-2xl border border-[#2A2A3A] overflow-hidden mb-8">
+            <div class="bg-[#1A1A24] px-5 py-3 border-b border-[#2A2A3A] flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+              <span class="text-xs font-mono text-[#9090A0] ml-3">jhonatan-forms.app</span>
+            </div>
+            <div class="p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">NOMBRE COMPLETO *</label>
+                  <div class="bg-[#0A0A0A] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] text-sm flex items-center justify-between hover:border-[#00D4FF]/50 transition">
+                    <span>Carlos Andrés Méndez González</span>
+                    <i class="fa-regular fa-circle-check text-[#00FF41] text-lg"></i>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">CORREO ELECTRÓNICO *</label>
+                  <div class="bg-[#0A0A0A] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] text-sm flex items-center justify-between hover:border-[#00D4FF]/50 transition">
+                    <span>carlos@empresa.com</span>
+                    <i class="fa-regular fa-circle-check text-[#00FF41] text-lg"></i>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">TELÉFONO *</label>
+                  <div class="bg-[#0A0A0A] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] text-sm flex items-center justify-between hover:border-[#00D4FF]/50 transition">
+                    <span>+57 300 123 4567</span>
+                    <i class="fa-regular fa-circle-check text-[#00FF41] text-lg"></i>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">EMPRESA *</label>
+                  <div class="bg-[#0A0A0A] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] text-sm flex items-center justify-between hover:border-[#00D4FF]/50 transition">
+                    <span>ABC Soluciones</span>
+                    <i class="fa-regular fa-circle-check text-[#00FF41] text-lg"></i>
+                  </div>
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">ASUNTO / DESCRIPCIÓN *</label>
+                  <div class="bg-[#0A0A0A] border border-[#2A2A3A] rounded-lg px-4 py-3 text-[#E0E0E0] text-sm min-h-[80px] hover:border-[#00D4FF]/50 transition">
+                    Requiero cotización para desarrollo de sistema de inventario con login de usuarios...
+                  </div>
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-mono text-[#00D4FF] mb-2 font-bold">FIRMA DIGITAL (área dibujable) *</label>
+                  <div class="bg-[#0A0A0A] border-2 border-dashed border-[#00FF41]/30 rounded-lg p-6 flex flex-col items-center justify-center min-h-[140px] hover:border-[#00FF41]/60 transition group cursor-pointer">
+                    <i class="fa-regular fa-signature text-4xl text-[#00FF41] mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm text-[#9090A0] text-center mb-3">Dibuja tu firma aquí</span>
+                    <button class="text-xs border border-[#00FF41]/50 text-[#00FF41] px-4 py-2 rounded-lg hover:bg-[#00FF41]/10 transition font-mono font-bold">
+                      <i class="fa-solid fa-pen-clip mr-1"></i> Abrir canvas de firma
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t border-[#2A2A3A]">
+                <p class="text-xs text-[#606070] font-mono">✨ Todos los campos con * son requeridos</p>
+                <button class="btn-primary text-[#0A0A0A] font-bold py-3 px-8 rounded-xl text-sm font-mono flex items-center gap-2 hover:shadow-lg transition">
+                  <i class="fa-solid fa-file-export"></i> Generar PDF y Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beneficios del sistema -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-[#1A1A24] p-5 rounded-lg border border-[#2A2A3A]">
+              <h4 class="font-bold text-[#E0E0E0] mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-[#FF6B6B]"></i> Para ti (el dueño)
+              </h4>
+              <ul class="space-y-2 text-sm text-[#9090A0]">
+                <li>✓ Automatiza captura de datos completamente</li>
+                <li>✓ Recibe PDFs firmados listos para archivar</li>
+                <li>✓ Datos organizados automáticamente en BD</li>
+                <li>✓ Reduce tiempo de papeleo en 80%</li>
+              </ul>
+            </div>
+            <div class="bg-[#1A1A24] p-5 rounded-lg border border-[#2A2A3A]">
+              <h4 class="font-bold text-[#E0E0E0] mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-star text-[#00FF41]"></i> Para tus clientes
+              </h4>
+              <ul class="space-y-2 text-sm text-[#9090A0]">
+                <li>✓ Experiencia profesional y moderna</li>
+                <li>✓ Proceso rápido y sin complicaciones</li>
+                <li>✓ Confirmación instantánea por email</li>
+                <li>✓ Seguridad y privacidad garantizada</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Badges de tecnologías usadas -->
+          <div class="flex flex-wrap justify-center gap-3 p-6 bg-[#1A1A24] rounded-lg border border-[#2A2A3A]">
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-brands fa-python text-[#00D4FF]"></i> Python</span>
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-brands fa-js text-[#00D4FF]"></i> JavaScript</span>
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-solid fa-database text-[#00D4FF]"></i> MySQL</span>
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-solid fa-flask text-[#00D4FF]"></i> Flask</span>
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-regular fa-file-pdf text-[#FF6B6B]"></i> ReportLab</span>
+            <span class="tech-badge px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1"><i class="fa-solid fa-shield-alt text-[#00FF41]"></i> JWT</span>
+          </div>
+
+          <div class="text-center mt-8">
+            <a href="#contacto" class="inline-flex items-center gap-2 text-[#00FF41] font-mono text-sm border-b-2 border-[#00FF41]/50 pb-1 hover:gap-3 transition-all hover:border-[#00FF41]">
+              ¿Necesitas un sistema como este? Contáctame hoy <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NUEVA SECCIÓN: TESTIMONIOS ========== -->
+  <section class="py-32 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00D4FF]/10 px-4 py-2 rounded-full border border-[#00D4FF]/30">
+          <i class="fa-regular fa-comments text-[#00D4FF]"></i>
+          <span class="text-xs font-mono text-[#00D4FF] font-semibold">LO QUE DICEN MIS CLIENTES</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Resultados que hablan por sí solos
         </h2>
       </div>
-      <div class="relative pl-8 border-l-2 border-[#1E1E2E] ml-4 md:ml-0">
-        <!-- Item Timeline -->
-        <div class="relative mb-12">
-          <div class="timeline-node"></div>
-          <div class="timeline-line"></div>
-          <span class="text-[#00FF41] font-mono text-sm font-bold tracking-widest uppercase">2025 - 2026</span>
-          <h3 class="text-xl font-bold font-mono text-[#E0E0E0] mt-1">Desarrollador Fullstack · Indumil</h3>
-          <p class="text-[#9090A0] text-sm mt-2 max-w-xl">
-            Etapa productiva. Responsable del diseño de arquitectura, desarrollo de catálogo dinámico, automatización con Python y resolución de conflictos de despliegue con Git.
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Testimonio 1 -->
+        <div class="testimonial-card p-6 rounded-xl hover:border-[#00FF41]/50 transition">
+          <div class="flex items-center gap-1 mb-4">
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+          </div>
+          <p class="text-[#9090A0] mb-6 text-sm leading-relaxed">
+            "La página web que Jhonatan nos hizo para Tecnozunchadoras ha sido fundamental. Recibimos más consultas que antes y se ve muy profesional."
           </p>
+          <div class="border-t border-[#2A2A3A] pt-4">
+            <p class="font-bold text-[#E0E0E0] text-sm">Carlos García</p>
+            <p class="text-xs text-[#606070]">Gerente, Tecnozunchadoras</p>
+          </div>
         </div>
-        <!-- Items adicionales de CV -->
-        <div class="relative mb-12">
-          <div class="timeline-node"></div>
-          <span class="text-[#9090A0] font-mono text-sm font-bold tracking-widest uppercase">2023</span>
-          <h3 class="text-lg font-bold font-mono text-[#E0E0E0] mt-1">Auxiliar de Soporte Técnico · I.E. Paz y Esperanza</h3>
+
+        <!-- Testimonio 2 -->
+        <div class="testimonial-card p-6 rounded-xl hover:border-[#00FF41]/50 transition">
+          <div class="flex items-center gap-1 mb-4">
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+          </div>
+          <p class="text-[#9090A0] mb-6 text-sm leading-relaxed">
+            "Jhonatan hizo que nuestro negocio se vea moderno en internet. El diseño es hermoso y fácil de usar. Muy recomendado!"
+          </p>
+          <div class="border-t border-[#2A2A3A] pt-4">
+            <p class="font-bold text-[#E0E0E0] text-sm">Paola Rodríguez</p>
+            <p class="text-xs text-[#606070]">Propietaria, La Rellena la Sabrosita</p>
+          </div>
         </div>
+
+        <!-- Testimonio 3 -->
+        <div class="testimonial-card p-6 rounded-xl hover:border-[#00FF41]/50 transition">
+          <div class="flex items-center gap-1 mb-4">
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+            <i class="fa-solid fa-star text-[#FFD700] text-sm"></i>
+          </div>
+          <p class="text-[#9090A0] mb-6 text-sm leading-relaxed">
+            "El sistema de login que nos desarrolló es seguro y fácil de usar. Nuestros usuarios están muy satisfechos. Genial trabajo!"
+          </p>
+          <div class="border-t border-[#2A2A3A] pt-4">
+            <p class="font-bold text-[#E0E0E0] text-sm">Luis Martínez</p>
+            <p class="text-xs text-[#606070]">Director Técnico, Empresa XYZ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN HABILIDADES TÉCNICAS MEJORADA ========== -->
+  <section id="habilidades" class="py-32 px-6 bg-[#0A0A0A]/80 border-t border-[#1E1E2E]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00D4FF]/10 px-4 py-2 rounded-full border border-[#00D4FF]/30">
+          <i class="fa-regular fa-code text-[#00D4FF]"></i>
+          <span class="text-xs font-mono text-[#00D4FF] font-semibold">HERRAMIENTAS Y TECNOLOGÍAS</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Tecnologías modernas que domino
+        </h2>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          Uso las mejores herramientas para construir soluciones rápidas, seguras y escalables
+        </p>
+      </div>
+
+      <!-- Categorías de tecnologías -->
+      <div class="space-y-12">
+        <!-- Backend -->
+        <div>
+          <h3 class="text-xl font-bold font-mono mb-6 text-[#00FF41] flex items-center gap-2">
+            <i class="fa-solid fa-server"></i> Backend & Bases de Datos
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-python text-3xl text-[#3776AB] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Python</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-flask text-3xl text-[#00FF41] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Flask</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-node-js text-3xl text-[#68A063] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Node.js</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-database text-3xl text-[#00D4FF] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">MySQL</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-leaf text-3xl text-[#13C137] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">MongoDB</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-shield text-3xl text-[#00FF41] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">JWT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div>
+          <h3 class="text-xl font-bold font-mono mb-6 text-[#00D4FF] flex items-center gap-2">
+            <i class="fa-solid fa-paintbrush"></i> Frontend & Diseño
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-html5 text-3xl text-[#E34C26] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">HTML5</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-css3-alt text-3xl text-[#1572B6] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">CSS3</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-js text-3xl text-[#F7DF1E] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">JavaScript</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-vuejs text-3xl text-[#4FC08D] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Vue.js</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-react text-3xl text-[#61DAFB] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">React</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-wind text-3xl text-[#38B2AC] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Tailwind</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Herramientas -->
+        <div>
+          <h3 class="text-xl font-bold font-mono mb-6 text-[#FF6B6B] flex items-center gap-2">
+            <i class="fa-solid fa-wrench"></i> Herramientas & Control de Versiones
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-git-alt text-3xl text-[#F1502F] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Git</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-github text-3xl text-[#FFFFFF] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">GitHub</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-terminal text-3xl text-[#00FF41] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Terminal</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-brands fa-docker text-3xl text-[#2496ED] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Docker</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-server text-3xl text-[#FF6B00] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Linux</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-xl bg-[#111115] border border-[#1E1E2E] hover:border-[#00FF41]/50 transition-all group">
+              <i class="fa-solid fa-cloud text-3xl text-[#FF9900] mb-2 group-hover:scale-125 transition-transform"></i>
+              <span class="text-xs font-mono text-[#9090A0] group-hover:text-[#E0E0E0] text-center">Deploy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN EXPERIENCIA MEJORADA ========== -->
+  <section id="experiencia" class="py-32 px-6 bg-[#0A0A0A]/60 border-t border-[#1E1E2E]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-20 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-[#00FF41]/10 px-4 py-2 rounded-full border border-[#00FF41]/30">
+          <i class="fa-regular fa-calendar text-[#00FF41]"></i>
+          <span class="text-xs font-mono text-[#00FF41] font-semibold">TRAYECTORIA PROFESIONAL</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-mono text-[#E0E0E0]">
+          Mi experiencia en desarrollo
+        </h2>
+        <p class="text-[#9090A0] max-w-2xl mx-auto text-lg">
+          Más de 3 años creando soluciones digitales que transforman negocios
+        </p>
+      </div>
+
+      <div class="relative pl-8 border-l-2 border-[#00FF41] ml-4 md:ml-0 space-y-12">
+        
+        <!-- 2024 - Actualidad -->
         <div class="relative">
           <div class="timeline-node"></div>
-          <span class="text-[#9090A0] font-mono text-sm font-bold tracking-widest uppercase">2021 - 2022</span>
-          <h3 class="text-lg font-bold font-mono text-[#E0E0E0] mt-1">Help Desk · Construarkidek</h3>
+          <div class="space-y-2">
+            <span class="inline-block text-[#00FF41] font-mono text-sm font-bold tracking-widest uppercase bg-[#00FF41]/10 px-3 py-1 rounded-full border border-[#00FF41]/30">
+              2024 - ACTUALIDAD
+            </span>
+            <h3 class="text-2xl font-bold font-mono text-[#E0E0E0]">Desarrollador Web Freelance</h3>
+            <p class="text-[#B0B0C0] text-sm leading-relaxed max-w-2xl">
+              Creación de páginas web profesionales para emprendedores y empresas. Especializado en sistemas de login, formularios inteligentes, integración de bases de datos y optimización SEO.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="text-xs bg-[#1A1A24] text-[#00D4FF] px-3 py-1 rounded-full border border-[#2A2A3A]">Web Design</span>
+              <span class="text-xs bg-[#1A1A24] text-[#00D4FF] px-3 py-1 rounded-full border border-[#2A2A3A]">Backend</span>
+              <span class="text-xs bg-[#1A1A24] text-[#00D4FF] px-3 py-1 rounded-full border border-[#2A2A3A]">Bases de Datos</span>
+              <span class="text-xs bg-[#1A1A24] text-[#00D4FF] px-3 py-1 rounded-full border border-[#2A2A3A]">SEO</span>
+            </div>
+            <p class="text-sm text-[#00FF41] mt-4 font-bold">✓ Clientes satisfechos: Tecnozunchadoras, La Rellena la Sabrosita, empresas locales</p>
+          </div>
         </div>
+
+        <!-- 2025 -->
+        <div class="relative">
+          <div class="timeline-node"></div>
+          <div class="space-y-2 bg-[#1A1A24] p-6 rounded-xl border border-[#2A2A3A]">
+            <span class="inline-block text-[#00D4FF] font-mono text-sm font-bold tracking-widest uppercase bg-[#00D4FF]/10 px-3 py-1 rounded-full border border-[#00D4FF]/30">
+              2025 - PRESENTE
+            </span>
+            <h3 class="text-xl font-bold font-mono text-[#E0E0E0]">Sistema de Login + Panel Administrativo Avanzado</h3>
+            <p class="text-[#B0B0C0] text-sm leading-relaxed">
+              Desarrollo completo de autenticación segura, gestión de usuarios con diferentes roles, panel administrativo personalizado y generación automática de reportes en PDF. Utilización de Python Flask, MySQL, JavaScript y JWT.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="relative">
+          <div class="timeline-node"></div>
+          <div class="space-y-2">
+            <span class="inline-block text-[#FF6B6B] font-mono text-sm font-bold tracking-widest uppercase bg-[#FF6B6B]/10 px-3 py-1 rounded-full border border-[#FF6B6B]/30">
+              2024
+            </span>
+            <h3 class="text-xl font-bold font-mono text-[#E0E0E0]">Lanzamiento de Portafolio Tecnozunchadoras</h3>
+            <p class="text-[#B0B0C0] text-sm leading-relaxed max-w-2xl">
+              Diseño y maquetación de sitio web corporativo moderno. Implementación de formulario de cotización inteligente y catálogo de productos interactivo. Mejora significativa en presencia digital y generación de leads.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="relative">
+          <div class="timeline-node"></div>
+          <div class="space-y-2">
+            <span class="inline-block text-[#00D4FF] font-mono text-sm font-bold tracking-widest uppercase bg-[#00D4FF]/10 px-3 py-1 rounded-full border border-[#00D4FF]/30">
+              2023
+            </span>
+            <h3 class="text-xl font-bold font-mono text-[#E0E0E0]">Inicio en desarrollo web freelance</h3>
+            <p class="text-[#B0B0C0] text-sm leading-relaxed max-w-2xl">
+              Comienzo de carrera independiente como desarrollador. Primeros proyectos en HTML, CSS, JavaScript. Aprendizaje continuo en Python, Flask y bases de datos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="mt-16 grid grid-cols-3 gap-6 bg-[#111115] p-8 rounded-2xl border border-[#2A2A3A]">
+        <div class="text-center">
+          <p class="text-3xl font-bold text-[#00FF41] mb-2">50+</p>
+          <p class="text-sm text-[#9090A0] font-mono">Proyectos completados</p>
+        </div>
+        <div class="text-center border-l border-r border-[#2A2A3A]">
+          <p class="text-3xl font-bold text-[#00D4FF] mb-2">100%</p>
+          <p class="text-sm text-[#9090A0] font-mono">Clientes satisfechos</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-bold text-[#FF6B6B] mb-2">3+</p>
+          <p class="text-sm text-[#9090A0] font-mono">Años de experiencia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ANTES DE FOOTER ========== -->
+  <section class="py-20 px-6 bg-gradient-to-r from-[#1A1A24] via-[#111115] to-[#1A1A24] border-t border-[#1E1E2E]">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-bold font-mono mb-4">
+          ¿Listo para <span class="highlight-text">transformar tu negocio?</span>
+        </h2>
+        <p class="text-[#9090A0] text-lg max-w-2xl mx-auto">
+          Tu página web profesional o sistema personalizado te espera. Contáctame hoy y hablaremos sobre cómo puedo ayudarte a crecer en internet.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#contacto" class="px-10 py-4 rounded-xl text-lg font-bold bg-gradient-to-r from-[#00FF41] to-[#00CC33] text-[#0A0A0A] hover:from-[#00CC33] hover:to-[#00AA22] shadow-2xl shadow-green-500/30 transition-all duration-300 font-mono inline-block transform hover:scale-105 btn-glow flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp"></i> Contacta ahora
+        </a>
+        <a href="mailto:rojasjhonatan88@gmail.com" class="px-10 py-4 rounded-xl text-lg font-bold border-2 border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF]/10 transition duration-300 font-mono inline-block flex items-center justify-center gap-2">
+          <i class="fa-solid fa-envelope"></i> Enviar email
+        </a>
       </div>
     </div>
   </section>
 
   <!-- ========== FOOTER / CONTACTO ========== -->
-  <footer id="contacto" class="border-t border-[#1E1E2E] py-16 text-center">
-    <div class="max-w-4xl mx-auto px-6 space-y-6">
-      <h2 class="text-2xl font-bold font-mono text-[#E0E0E0]">
-        <span class="text-[#00FF41]">~/</span>conectemos
-      </h2>
-      <div class="flex justify-center space-x-6 text-2xl">
-        <a href="mailto:rojasjhonatan88@gmail.com" class="hover:text-[#00FF41] transition-colors"><i class="fa-solid fa-envelope"></i></a>
-        <a href="#" class="hover:text-[#00FF41] transition-colors"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="hover:text-[#00FF41] transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+  <footer id="contacto" class="border-t border-[#1E1E2E] py-20 bg-[#0A0A0A]/80">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <!-- Columna 1: Información -->
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fa-solid fa-terminal text-2xl text-[#00FF41]"></i>
+            <span class="text-xl font-bold tracking-tight font-mono">&lt;JhonatanRojas /&gt;</span>
+          </div>
+          <p class="text-[#9090A0] text-sm leading-relaxed mb-4">
+            Desarrollador web freelance especializado en crear soluciones digitales que transforman negocios. Tu éxito en internet es mi misión.
+          </p>
+          <div class="flex space-x-4 text-lg">
+            <a href="https://github.com/Jhonatan889" target="_blank" class="text-[#9090A0] hover:text-[#00FF41] transition-colors" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/jhonatan-rojas/" target="_blank" class="text-[#9090A0] hover:text-[#00FF41] transition-colors" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:rojasjhonatan88@gmail.com" class="text-[#9090A0] hover:text-[#00FF41] transition-colors"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Enlaces rápidos -->
+        <div>
+          <h3 class="font-bold text-[#E0E0E0] mb-4 font-mono">NAVEGACIÓN RÁPIDA</h3>
+          <ul class="space-y-2 text-sm text-[#9090A0]">
+            <li><a href="#home" class="hover:text-[#00FF41] transition-colors">~ Inicio</a></li>
+            <li><a href="#por-que" class="hover:text-[#00FF41] transition-colors">~ ¿Por qué una web?</a></li>
+            <li><a href="#servicios" class="hover:text-[#00FF41] transition-colors">~ Servicios</a></li>
+            <li><a href="#proyectos" class="hover:text-[#00FF41] transition-colors">~ Portafolio</a></li>
+            <li><a href="#habilidades" class="hover:text-[#00FF41] transition-colors">~ Tecnologías</a></li>
+            <li><a href="#experiencia" class="hover:text-[#00FF41] transition-colors">~ Experiencia</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Contacto -->
+        <div>
+          <h3 class="font-bold text-[#E0E0E0] mb-4 font-mono">CONTACTO</h3>
+          <div class="space-y-3 text-sm text-[#9090A0]">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-envelope text-[#00FF41]"></i>
+              <a href="mailto:rojasjhonatan88@gmail.com" class="hover:text-[#00FF41] transition-colors">rojasjhonatan88@gmail.com</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-[#00FF41]"></i>
+              <span>Disponible en WhatsApp</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-globe text-[#00FF41]"></i>
+              <span>Trabajo online desde Colombia</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <p class="text-[#606070] text-sm font-mono">
-        © 2026 Jhonatan David Rojas Meneses. Construido con código abierto y café.
-      </p>
+
+      <!-- Separador -->
+      <div class="border-t border-[#1E1E2E] pt-8">
+        <p class="text-[#606070] text-xs font-mono text-center">
+          © 2026 Jhonatan David Rojas Meneses | Creador de páginas web profesionales, sistemas de login y formularios inteligentes. Todos los derechos reservados.
+        </p>
+        <p class="text-[#606070] text-xs font-mono text-center mt-4">
+          Hecho con ❤️ por un desarrollador apasionado | <a href="#home" class="text-[#00FF41] hover:underline">Volver arriba ↑</a>
+        </p>
+      </div>
     </div>
   </footer>
 
   <!-- ========== SCRIPTS ========== -->
   <script>
-    // ---------- CAMPO DE ESTRELLAS ----------
+    // Campo de estrellas animado
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     
-    const stars = Array.from({ length: 120 }, () => ({
+    const stars = Array.from({ length: 150 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       r: Math.random() * 1.5 + 0.3,
       speedX: (Math.random() - 0.5) * 0.15,
-      speedY: (Math.random() - 0.5) * 0.15
+      speedY: (Math.random() - 0.5) * 0.15,
+      opacity: Math.random() * 0.5 + 0.5
     }));
     
     function drawStars() {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#E0E0E0';
       stars.forEach(star => {
+        ctx.globalAlpha = star.opacity;
+        ctx.fillStyle = '#E0E0E0';
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fill();
         star.x += star.speedX;
         star.y += star.speedY;
+        star.opacity += (Math.random() - 0.5) * 0.1;
+        star.opacity = Math.max(0.2, Math.min(1, star.opacity));
         if (star.x < 0) star.x = width;
         if (star.x > width) star.x = 0;
         if (star.y < 0) star.y = height;
         if (star.y > height) star.y = 0;
       });
+      ctx.globalAlpha = 1;
       requestAnimationFrame(drawStars);
     }
     
@@ -404,24 +1426,54 @@
     
     drawStars();
     
-    // ---------- EFECTO DE MÁQUINA DE ESCRIBIR ----------
+    // Efecto máquina de escribir mejorado
     const textElement = document.getElementById('typing-text');
     if (textElement) {
-      const fullText = "Codea, documenta, despliega. El ciclo nunca termina.";
+      const fullText = textElement.textContent;
+      textElement.textContent = '';
       let index = 0;
-      
       function typeWriter() {
         if (index < fullText.length) {
-          textElement.textContent = fullText.substring(0, index + 1);
+          textElement.textContent += fullText.charAt(index);
           index++;
-          setTimeout(typeWriter, 60);
+          setTimeout(typeWriter, 35);
         }
       }
-      
-      // Inicia el efecto después de un pequeño delay
       setTimeout(typeWriter, 500);
     }
-  </script>
 
+    // Smooth scroll mejorado
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Animación de entrada para elementos
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slideInUp');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card-benefit, .service-card, .project-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
